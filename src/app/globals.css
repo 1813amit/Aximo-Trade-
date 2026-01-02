@@ -1,0 +1,414 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 257 33% 5%; /* Main background: near black */
+    --foreground: 210 40% 98%; /* Main text: almost white */
+    
+    --card: 257 21% 11%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 257 33% 5%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 257 21% 14%;
+    --primary-foreground: 210 40% 98%;
+    
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%; /* text-tertiary */
+    
+    --accent: 182 99% 74%;
+    
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 257 21% 20%;
+    --input: 217 33% 17%;
+    --ring: 182 99% 74%;
+
+    --radius: 0.5rem;
+
+    /* Custom Colors from spec */
+    --text-primary: 210 40% 98%; /* White/light color */
+    --text-secondary: 215 20% 65%; /* Gray for placeholders */
+    --text-tertiary: 215 20% 65%; /* Gray for placeholders */
+    --primary-blue: 214 90% 60%; /* Active blue */
+    --primary-blue-hover: 214 90% 70%; /* Lighter blue for hover */
+    --primary-stroke: 257 21% 20%; /* Default border/stroke */
+    --secondary-stroke: 257 21% 25%; /* Hover border/stroke */
+    --primary-green: 140 80% 50%;
+
+    /* Token Price Colors */
+    --price-up: 150 58% 53%;
+    --price-down: 0 72% 51%;
+    
+    /* Token Border Colors */
+    --token-yellow: 45 93% 47%;
+    --token-green: 142 76% 36%;
+    --token-red: 0 84% 60%;
+    --token-pink: 330 81% 60%;
+    --token-purple: 262 83% 58%;
+  }
+
+  .dark {
+    --background: 257 33% 5%;
+    --foreground: 210 40% 98%;
+    --card: 257 21% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 257 21% 11%; /* Changed from 5% to 11% to match tooltip bg */
+    --popover-foreground: 210 40% 98%;
+    --primary: 257 21% 14%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 182 99% 74%;
+  
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 257 21% 20%;
+    --input: 217 33% 17%;
+    --ring: 182 99% 74%;
+
+    /* Custom Colors from spec */
+    --text-primary: 210 40% 98%;
+    --text-secondary: 215 20% 65%;
+    --text-tertiary: 215 20% 65%;
+    --primary-blue: 214 90% 60%;
+    --primary-blue-hover: 214 90% 70%;
+    --primary-stroke: 257 21% 20%;
+    --secondary-stroke: 257 21% 25%;
+    --primary-green: 140 80% 50%;
+
+    /* Token Price Colors */
+    --price-up: 150 58% 53%;
+    --price-down: 0 72% 51%;
+    
+    /* Token Border Colors */
+    --token-yellow: 45 93% 47%;
+    --token-green: 142 76% 36%;
+    --token-red: 0 84% 60%;
+    --token-pink: 330 81% 60%;
+    --token-purple: 262 83% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Bounding progress animation property definition */
+  .bounding-progress {
+    --angle: 0deg;
+    animation: bounding-spin 1s linear infinite;
+    mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+  }
+  
+  /* Property definition for bounding animation */
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+}
+
+@layer utilities {
+  .text-price-up {
+    color: hsl(var(--price-up));
+    text-shadow: 0 0 8px hsla(var(--price-up), 0.7);
+  }
+  .text-price-down {
+    color: hsl(var(--price-down));
+    text-shadow: 0 0 8px hsla(var(--price-down), 0.7);
+  }
+  
+  .bg-price-up-flash {
+    animation: price-up-flash 0.7s ease-out;
+  }
+  .bg-price-down-flash {
+    animation: price-down-flash 0.7s ease-out;
+  }
+
+  /* Token border colors */
+  .token-border-yellow {
+    --token-border-color: hsl(var(--token-yellow));
+  }
+  .token-border-green {
+    --token-border-color: hsl(var(--token-green));
+  }
+  .token-border-red {
+    --token-border-color: hsl(var(--token-red));
+  }
+  .token-border-pink {
+    --token-border-color: hsl(var(--token-pink));
+  }
+  .token-border-purple {
+    --token-border-color: hsl(var(--token-purple));
+  }
+
+  /* Custom color utilities using CSS variables */
+  .text-primary-blue {
+    color: hsl(var(--primary-blue));
+  }
+  .text-primary-blue-hover {
+    color: hsl(var(--primary-blue-hover));
+  }
+  .bg-primary-blue {
+    background-color: hsl(var(--primary-blue));
+  }
+  .bg-primary-blue-hover {
+    background-color: hsl(var(--primary-blue-hover));
+  }
+  .border-primary-blue {
+    border-color: hsl(var(--primary-blue));
+  }
+  .ring-primary-blue {
+    --tw-ring-color: hsl(var(--primary-blue));
+  }
+
+  /* Scroll utilities */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Animation utilities */
+  .animate-ticker {
+    animation: ticker 40s linear infinite;
+  }
+  
+  /* Responsive text utilities */
+  .text-responsive-xs {
+    @apply text-[11px] sm:text-xs;
+  }
+  .text-responsive-sm {
+    @apply text-xs sm:text-sm;
+  }
+  .text-responsive-base {
+    @apply text-sm sm:text-base;
+  }
+  .text-responsive-lg {
+    @apply text-base sm:text-lg;
+  }
+  
+  /* Responsive spacing utilities */
+  .gap-responsive {
+    @apply gap-2 sm:gap-3 lg:gap-4;
+  }
+  .p-responsive {
+    @apply p-2 sm:p-3 lg:p-4;
+  }
+  
+  /* Token row responsive utilities */
+  .token-row-responsive {
+    @apply flex-col lg:flex-row gap-3 lg:gap-4 p-3 lg:p-4;
+  }
+  
+  /* Token image responsive */
+  .token-image-responsive {
+    @apply w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20;
+  }
+  
+  /* Truncation utilities */
+  .truncate-1 {
+    @apply truncate max-w-[100px] sm:max-w-[150px] lg:max-w-[200px];
+  }
+  .truncate-2 {
+    @apply truncate max-w-[80px] sm:max-w-[120px] lg:max-w-[160px];
+  }
+
+  /* Flex responsive utilities */
+  .flex-responsive {
+    @apply flex-col sm:flex-row;
+  }
+  .items-responsive {
+    @apply items-start sm:items-center;
+  }
+  .justify-responsive {
+    @apply justify-start sm:justify-between;
+  }
+
+  /* Animation keyframes */
+  @keyframes bounding-spin {
+    from {
+      --angle: 0deg;
+    }
+    to {
+      --angle: 360deg;
+    }
+  }
+
+  @keyframes price-up-flash {
+    0% { background-color: hsla(var(--price-up), 0.2); }
+    100% { background-color: transparent; }
+  }
+  
+  @keyframes price-down-flash {
+    0% { background-color: hsla(var(--price-down), 0.2); }
+    100% { background-color: transparent; }
+  }
+  
+  @keyframes ticker {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  
+  /* Shimmer animation for loading states */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+    background: linear-gradient(90deg, 
+      hsla(var(--background), 0) 25%, 
+      hsla(var(--primary), 0.5) 50%, 
+      hsla(var(--background), 0) 75%
+    );
+    background-size: 200% 100%;
+  }
+  
+  /* Fade in/out animations */
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.2s ease-out;
+  }
+  
+  .animate-fade-out {
+    animation: fade-out 0.2s ease-out;
+  }
+  
+  /* Slide animations */
+  @keyframes slide-in-right {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  
+  @keyframes slide-out-right {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+  }
+  
+  .animate-slide-in-right {
+    animation: slide-in-right 0.3s ease-out;
+  }
+  
+  .animate-slide-out-right {
+    animation: slide-out-right 0.3s ease-out;
+  }
+  
+  /* Tooltip animations */
+  @keyframes tooltip-fade {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-tooltip {
+    animation: tooltip-fade 0.15s ease-out;
+  }
+}
+
+/* Custom scrollbar styling */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsla(var(--background), 0.8);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsla(var(--primary-stroke), 0.6);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsla(var(--primary-stroke), 0.8);
+  }
+}
+
+/* Responsive container queries for better token card layouts */
+@container (max-width: 400px) {
+  .token-card-compact {
+    .token-image {
+      @apply w-14 h-14;
+    }
+    .token-name {
+      @apply text-sm;
+    }
+    .token-price {
+      @apply text-xs;
+    }
+  }
+}
+
+/* Custom focus styles - CORRECTED: Use ring instead of outline */
+*:focus-visible {
+  @apply ring-2 ring-primary-blue ring-offset-2 ring-offset-background;
+}
+
+/* Selection styles */
+/* ::selection {
+  @apply bg-primary-blue/30 text-text-primary;
+} */
+
+/* Firefox specific */
+@-moz-document url-prefix() {
+  .bounding-progress {
+    animation: bounding-spin-firefox 1s linear infinite;
+  }
+  
+  @keyframes bounding-spin-firefox {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}

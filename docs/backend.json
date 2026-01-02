@@ -1,0 +1,81 @@
+{
+  "entities": {
+    "Token": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Token",
+      "type": "object",
+      "description": "Represents a token with its associated real-time data.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the token."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the token."
+        },
+        "symbol": {
+          "type": "string",
+          "description": "The symbol of the token (e.g., BTC)."
+        },
+        "price": {
+          "type": "number",
+          "description": "The current price of the token."
+        },
+        "priceChange24h": {
+          "type": "number",
+          "description": "The percentage change in price over the last 24 hours."
+        },
+        "volume24h": {
+          "type": "number",
+          "description": "The trading volume of the token in the last 24 hours."
+        },
+        "marketCap": {
+          "type": "number",
+          "description": "The market capitalization of the token."
+        },
+        "category": {
+          "type": "string",
+          "description": "The category of the token (e.g., New Pair, Final Stretch, Migrated)."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "symbol",
+        "price",
+        "priceChange24h",
+        "volume24h",
+        "marketCap",
+        "category"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/tokens/{tokenId}",
+        "definition": {
+          "entityName": "Token",
+          "schema": {
+            "$ref": "#/backend/entities/Token"
+          },
+          "description": "Stores token data with real-time information for display in the token table. All tokens are treated as publicly accessible, so no user-specific authorization is required.",
+          "params": [
+            {
+              "name": "tokenId",
+              "description": "The unique identifier for the token."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "Given the requirement for real-time updates and the focus on displaying token data in a table format similar to Axiom Trade, the proposed Firestore structure prioritizes efficient data retrieval and scalability. To support the application's core features, including token table rendering, interactive elements, sorting functionality, real-time price updates, loading state management, and error boundary handling, a single collection called 'tokens' is used. Each document in this collection represents a token with its associated data. To achieve Authorization Independence, no specific user-based authorization is needed since the data appears to be publicly accessible, meaning no denormalization of user-specific roles is required. This simplifies the security rules. The QAP requirements (Rules are not Filters) are met because all documents within the 'tokens' collection share the same public read access permissions, and no filtering based on user roles is necessary."
+  }
+}
