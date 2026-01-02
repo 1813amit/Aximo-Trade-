@@ -117,7 +117,7 @@ export const TokenImage = ({ token }: { token: Token }) => {
                 </PopoverContent>
             </Popover>
 
-            <Button variant="link" className="text-muted-foreground hover:text-primary-blue-hover h-auto p-0 mt-1 max-w-[68px] sm:max-w-[74px] truncate text-xs transition-colors ">
+            <Button variant="link" className="text-muted-foreground hover:text-primary-blue-hover h-auto p-0 mt-1 max-w-[68px] sm:max-w-[74px] truncate text-xs transition-colors duration-300">
                 {token.pump}
             </Button>
         </div>
