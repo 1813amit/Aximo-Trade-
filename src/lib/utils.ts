@@ -18,7 +18,7 @@ export const formatSubscript = (value: number): string => {
     const parts = str.split('.');
     if (parts.length < 2) return str;
 
-    let decimals = parts[1];
+    const  decimals = parts[1];
     let zeroCount = 0;
     for(let i = 0; i < decimals.length; i++) {
         if(decimals[i] === '0') {

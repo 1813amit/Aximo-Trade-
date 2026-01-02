@@ -25,7 +25,7 @@ const DesktopNavButton = ({
   tooltipContent
 }: { 
   children?: React.ReactNode, 
-  icon?: any, 
+  icon?: React.ReactNode, 
   label?: string, 
   hasNotification?: boolean,
   className?: string,

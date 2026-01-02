@@ -18,12 +18,10 @@ type ToasterToast = ToastProps & {
   action?: ToastActionElement
 }
 
-const actionTypes = {
-  ADD_TOAST: "ADD_TOAST",
-  UPDATE_TOAST: "UPDATE_TOAST",
-  DISMISS_TOAST: "DISMISS_TOAST",
-  REMOVE_TOAST: "REMOVE_TOAST",
-} as const
+// Remove the const declaration and define it directly in ActionType
+// OR change to type if only used for typing
+// Option 1: Remove the const and define it directly in ActionType (recommended)
+// Option 2: Use 'as const' and keep it but fix the unused warning
 
 let count = 0
 
@@ -32,7 +30,13 @@ function genId() {
   return count.toString()
 }
 
-type ActionType = typeof actionTypes
+// Define ActionType directly without the intermediate const
+type ActionType = {
+  ADD_TOAST: "ADD_TOAST"
+  UPDATE_TOAST: "UPDATE_TOAST"
+  DISMISS_TOAST: "DISMISS_TOAST"
+  REMOVE_TOAST: "REMOVE_TOAST"
+}
 
 type Action =
   | {

@@ -34,7 +34,7 @@ const names = [
     'ZynCoin', 'DogWifCat', 'Pepe', 'Bonk', 'Slerf', 'WIF', 'Jeo Boden', 'Popcat'
 ];
 const symbols = names.map(n => n.replace(/\s+/g, '').substring(0, 5).toUpperCase());
-const statRowKeys: StatRowKey[] = ['holders', 'website', 'search', 'trophy', 'crown', 'views', 'socials'];
+// const statRowKeys: StatRowKey[] = ['holders', 'website', 'search', 'trophy', 'crown', 'views', 'socials'];
 const dynamicProgressIcons: StatProgress['icon'][] = ['star', 'chef', 'clover', 'leaf', 'send'];
 const staticProgressIcons: StatProgress['icon'][] = ['target', 'ghost'];
 

@@ -5,10 +5,10 @@ import { useState, useEffect } from 'react';
 import type { Token, StatProgress, StatRowKey } from '../lib/types';
 import { produce } from 'immer';
 
-const getRandomSubset = (arr: Token[], count: number) => {
-  const shuffled = [...arr].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
-};
+// const getRandomSubset = (arr: Token[], count: number) => {
+//   const shuffled = [...arr].sort(() => 0.5 - Math.random());
+//   return shuffled.slice(0, count);
+// };
 
 const formatTimeAgo = (date: Date) => {
     const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
@@ -41,7 +41,7 @@ export function useTokenUpdates(allMockTokens: Token[], updateInterval = 1500) {
   useEffect(() => {
     // Initialize tokens on the client to avoid hydration errors
     setTokens(allMockTokens.map(t => ({...t, price: t.marketCap / (t.liquidity * 100), marketCapColor: 'text-yellow-400'})));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  
   }, [allMockTokens]);
 
   // This effect simulates real-time updates for various token properties
